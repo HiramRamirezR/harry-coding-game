@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programando con Harry Potter</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p@5.0.0/index.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <header>
+            <h1>🧙 PROGRAMANDO EN HOGWARTS</h1>
+            <p>¡Aprende lógica de programación ayudando a tu personaje a atrapar la Snitch Dorada!</p>
+            <div class="score-bar">
+                <div class="score-item">🏆 PUNTOS: <span id="totalPoints">0</span></div>
+                <div class="score-item">⭐ NIVELES: <span id="completedLevels">0</span>/30</div>
+                <div class="score-item">🌟 ESTRELLAS: <span id="totalStars">0</span>/90</div>
+                <div class="score-item" id="houseScoreItem" style="display:none;">🏠 <span id="houseName"></span>: <span id="housePoints">0</span> PTS</div>
+                <div class="score-item" id="charScoreItem" style="display:none;">⚡ <span id="charNameDisplay"></span></div>
+            </div>
+        </header>
+
+        <div class="start-screen" id="startScreen">
+            <div id="houseSelection" style="margin-bottom:20px;">
+                <h2> ELIGE TU CASA 🏰</h2>
+                <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:15px;">
+                    <button class="btn house-btn" data-house="gryffindor" onclick="selectHouse('gryffindor')" style="background:#ae0001;">🦁 GRYFFINDOR</button>
+                    <button class="btn house-btn" data-house="hufflepuff" onclick="selectHouse('hufflepuff')" style="background:#ffdb00; color:#000;">🦡 HUFFLEPUFF</button>
+                    <button class="btn house-btn" data-house="ravenclaw" onclick="selectHouse('ravenclaw')" style="background:#0e1a40;">🦅 RAVENCLAW</button>
+                    <button class="btn house-btn" data-house="slytherin" onclick="selectHouse('slytherin')" style="background:#1a5c2a;">🐍 SLYTHERIN</button>
+                </div>
+            </div>
+            <div id="charSelection" style="margin-bottom:20px;">
+                <h2> ELIGE TU PERSONAJE ⚡</h2>
+                <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:15px;">
+                    <button class="btn char-btn" data-char="harry" onclick="selectCharacter('harry')" style="background:#ae0001;">⚡ HARRY</button>
+                    <button class="btn char-btn" data-char="hermione" onclick="selectCharacter('hermione')" style="background:#8B4513;">📖 HERMIONE</button>
+                    <button class="btn char-btn" data-char="ron" onclick="selectCharacter('ron')" style="background:#c9a0dc; color:#000;">♟️ RON</button>
+                    <button class="btn char-btn" data-char="luna" onclick="selectCharacter('luna')" style="background:#ffd5dc; color:#000;">🦄 LUNA</button>
+                </div>
+            </div>
+            <h2> ELIGE TU DESAFÍO, JOVEN MAGO ⚡</h2>
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:15px;">
+                <button class="btn btn-run" onclick="setGameMode('normal')">📜 MODO HISTORIA</button>
+                <button class="btn btn-back" onclick="setGameMode('optimization')">🏆 OPTIMIZACIÓN</button>
+                <button class="btn btn-reset" onclick="setGameMode('debugging')">🐛 DEBUGGING</button>
+                <button class="btn btn-clear" onclick="openSpellBook()">📖 CUADERNO</button>
+            </div>
+            <div class="levels-grid" id="levelsGrid"></div>
+        </div>
+
+        <div class="game-screen" id="gameScreen">
+            <div class="game-layout">
+                <div class="level-info" id="levelInfo">
+                    <h4 id="currentLevelTitle">NIVEL 1</h4>
+                    <p id="currentLevelDesc">Ayuda a tu personaje a llegar a la Snitch</p>
+                </div>
+
+                <div class="panel">
+                    <h3> TARJETAS DE HECHIZOS</h3>
+                    <div class="cards-container" id="cardsContainer"></div>
+                </div>
+
+                <div class="panel">
+                    <h3>📋 TU PROGRAMA</h3>
+                    <div class="program-area" id="programArea">
+                        <p style="color: #666; text-align: center; width: 100%; padding: 30px; font-size: 0.5em;">
+                            HAZ CLIC EN LAS TARJETAS PARA AGREGARLAS
+                        </p>
+                    </div>
+                    <div class="card-count" id="cardCountBar">
+                        TARJETAS: <span id="cardCount">0</span>
+                        <span id="memoryLimit" style="display:none; color:var(--green-move);"></span>
+                        <span id="debugInfo" style="display:none; color:var(--yellow-key); margin-left:10px;">🐛 MODO DEBUG</span>
+                        <span id="attemptDisplay" style="display:none; margin-left:10px; font-size:0.9em;">🔄 <span id="attemptCount">0</span></span>
+                        <button id="btnCloseFunc" class="btn btn-clear" style="display:none; font-size:0.85em; padding:8px 14px;" onclick="closeFunc()">🔚 CERRAR DEF</button>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+
+                    <div class="board-container">
+                        <div class="board" id="board"></div>
+                    </div>
+
+                    <div class="controls">
+                        <button class="btn btn-run" id="btnRun" onclick="runProgram()">▶ EJECUTAR</button>
+                        <button class="btn btn-reset" id="btnReset" onclick="resetLevel()">↺ REINICIAR</button>
+                        <button class="btn btn-clear" onclick="clearProgram()">✕ LIMPIAR</button>
+                        <button class="btn btn-back" onclick="goToMenu()">🏠 MENÚ</button>
+                        <button class="btn btn-back" id="btnMusic" onclick="toggleMusic()">🎵 MÚSICA</button>
+                    </div>
+
+                    <div class="speed-control">
+                        <span>🐢</span>
+                        <input type="range" id="speedSlider" min="200" max="1500" value="700" oninput="updateSpeed()">
+                        <span>🐇</span>
+                        <span id="speedLabel">NORMAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-overlay" id="dialogOverlay" style="display:none;">
+        <div class="dialog-box">
+            <div class="dialog-speaker">
+                <div class="dialog-avatar" id="dialogAvatar">🧙</div>
+                <span class="dialog-speaker-name" id="dialogSpeaker">Hagrid</span>
+            </div>
+            <div class="dialog-text" id="dialogText">¡Bienvenido a Hogwarts!</div>
+            <div class="dialog-controls">
+                <button class="btn btn-clear" onclick="skipDialogues()">⏭ SALTAR</button>
+                <button class="btn btn-run" id="btnNextDialogue" onclick="nextDialogue()">SIGUIENTE ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" style="display:none;"></div>
+    <div class="message" id="message" style="display:none;"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://archive.org/download/tvtunes_17585/Harry%20Potter%20-%20Main%20Theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
