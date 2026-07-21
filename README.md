@@ -65,23 +65,27 @@ Las funciones se crean con la tarjeta `def`: escribe un nombre, agrega tarjetas 
 ## 🚀 Cómo jugar
 
 1. Abre `index.html` en tu navegador
-2. Elige una casa de Hogwarts
-3. Selecciona tu personaje (Harry, Hermione, Ron o Luna)
-4. Selecciona un modo de juego
-5. Escucha el diálogo del nivel, luego haz clic en tarjetas para armar tu programa
-6. Presiona **▶ EJECUTAR** para ver al personaje ejecutar tu código
+2. Crea o selecciona tu perfil de jugador
+3. Elige una casa de Hogwarts
+4. Selecciona tu personaje (Harry, Hermione, Ron o Luna)
+5. Selecciona un modo de juego
+6. Escucha el diálogo del nivel, luego haz clic en tarjetas para armar tu programa
+7. Presiona **▶ EJECUTAR** para ver al personaje ejecutar tu código
+
+## 👥 Perfiles Multi-Jugador
+
+Cada jugador tiene su propio progreso, personaje, casa, estrellas y hechizos personalizados guardados en el navegador. Usa el botón "CAMBIAR JUGADOR" en la pantalla de inicio para alternar entre perfiles.
 
 ## 🛠️ Tecnologías
 
 - HTML5, CSS3, JavaScript (vanilla)
-- Imágenes locales en carpeta `img/` (antes usaban URLs externas)
-- Fuente Press Start 2P desde CDN
-- El pseudocódigo Python se ejecuta internamente en JavaScript (no usa Pyodide ni Skulpt)
-- Persistencia con localStorage (progreso, personaje, funciones, casa)
+- Imágenes locales en carpeta `img/`
+- Pseudocódigo Python ejecutado internamente en JavaScript (no usa Pyodide ni Skulpt)
+- Persistencia con localStorage (perfiles multi-jugador con progreso individual)
 
 ## 🎨 Estilo
 
-Interfaz con temática de Harry Potter, vista de código tipo IDE con sintaxis coloreada (Material Palenight), animaciones retro y efectos visuales para cada hechizo.
+Interfaz con temática oscura de Harry Potter, vista de código tipo IDE con sintaxis coloreada (Material Palenight), fuentes modernas y legibles, y optimización para tablets en modo landscape.
 
 ---
 

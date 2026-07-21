@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Programando con Harry Potter</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p@5.0.0/index.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -26,7 +27,21 @@
             </div>
         </header>
 
+        <div class="profile-overlay" id="profileSelector">
+            <div class="profile-modal">
+                <h2>🎮 ¿QUIÉN ERES?</h2>
+                <div class="profile-list" id="profileList"></div>
+                <div class="profile-actions">
+                    <button class="btn btn-run" onclick="createNewProfile()">+ NUEVO JUGADOR</button>
+                    <button class="btn btn-clear" id="btnDeleteProfile" style="display:none;" onclick="deleteCurrentProfile()">🗑 ELIMINAR</button>
+                </div>
+            </div>
+        </div>
+
         <div class="start-screen" id="startScreen">
+            <div style="text-align:right; margin-bottom:10px;">
+                <button class="btn btn-back" onclick="showChangePlayer()" style="font-size:0.5em; padding:8px 12px;">👥 CAMBIAR JUGADOR</button>
+            </div>
             <div id="houseSelection" style="margin-bottom:20px;">
                 <h2> ELIGE TU CASA 🏰</h2>
                 <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:15px;">

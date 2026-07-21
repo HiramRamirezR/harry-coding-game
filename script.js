@@ -6,8 +6,8 @@ const IMAGES = {
     snitch: 'img/snitch.png',
     dementor: 'img/dementor.png',
     door: 'img/door.png',
-    dragon: 'img/dragon.png',
-    rock: 'img/rock.png'
+    dragon: 'img/dragon.svg',
+    rock: 'img/rock.svg'
 };
 
 const CARD_TYPES = {
@@ -90,13 +90,13 @@ const LEVELS = [
         desc: 'Zigzag. Sigue el camino con giros a derecha e izquierda.',
         concept: 'GIROS AVANZADOS', size: 4,
         harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 2, y: 3 },
-        walls: [{ x: 0, y: 2 }, { x: 2, y: 0 }, { x: 1, y: 3 }],
+        walls: [{ x: 0, y: 2 }, { x: 2, y: 0 }],
         dementors: [], doors: [], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnRight', 'turnLeft'], memoryLimit: 7, points: 50,
         dialogues: [
             { speaker: 'Hermione', text: '{player}, presta atención. El programa se lee de arriba a abajo, como un libro.' },
             { speaker: 'Hermione', text: 'Cada línea es una instrucción. Si el camino hace zigzag, solo debes seguir el orden.' },
-            { speaker: 'Hermione', text: 'avanzar(), girar(), avanzar(), girar(), avanzar(). ¡Así de simple!' }
+            { speaker: 'Hermione', text: 'avanzar(), girar_derecha(), avanzar(), avanzar(), avanzar(), girar_izquierda(), avanzar(). ¡7 tarjetas exactas!' }
         ]
     },
     {
@@ -146,16 +146,16 @@ const LEVELS = [
     {
         id: 7, year: 2,
         title: 'LA VUELTA AL BLOQUE',
-        desc: 'Rodea un obstáculo. El patrón avanzar + girar se repite.',
+        desc: 'El camino da una L. El patrón avanzar se repite: bucle + giro + bucle.',
         concept: 'BUCLE CON GIROS', size: 4,
-        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 2, y: 0 },
-        walls: [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }],
+        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 3, y: 3 },
+        walls: [],
         dementors: [], doors: [], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnRight', 'turnLeft', 'loop'], memoryLimit: 3, points: 100,
         dialogues: [
-            { speaker: 'Ron', text: 'Mira {player}, el patrón se repite: avanzar, girar, avanzar, girar...' },
-            { speaker: 'Ron', text: 'Pon todo lo que se repite DENTRO del bucle. El bloque entero se repite las veces que elijas.' },
-            { speaker: 'Ron', text: '¡Es como un hechizo que lanzas varias veces seguidas!' }
+            { speaker: 'Ron', text: 'Mira {player}, el camino hace una L: avanzas varias veces, giras, y avanzas más.' },
+            { speaker: 'Ron', text: 'En lugar de escribir "avanzar()" muchas veces, usa un bucle: "for i in range(n):" repite lo de dentro.' },
+            { speaker: 'Ron', text: 'Un bucle para ir a la derecha, un giro, otro bucle para bajar. ¡Solo 3 tarjetas!' }
         ]
     },
     {
@@ -177,14 +177,14 @@ const LEVELS = [
         title: 'DOS BUCLES',
         desc: 'Dos secciones rectas separadas por un giro. Usa dos bucles.',
         concept: 'MÚLTIPLES BUCLES', size: 6,
-        harry: { x: 0, y: 2, dir: 0 }, snitch: { x: 5, y: 2 },
-        walls: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 5, y: 3 }, { x: 0, y: 2 }, { x: 0, y: 3 }, { x: 0, y: 4 }],
+        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 5, y: 5 },
+        walls: [{ x: 0, y: 3 }, { x: 1, y: 3 }],
         dementors: [], doors: [], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnRight', 'turnLeft', 'loop'], memoryLimit: 5, points: 125,
         dialogues: [
             { speaker: 'Hermione', text: 'Dos segmentos rectos, separados por un giro. Son DOS patrones diferentes.' },
             { speaker: 'Hermione', text: 'Cada patrón necesita su propio bucle. Puedes tener varios bucles en un mismo programa.' },
-            { speaker: 'Hermione', text: 'Primer bucle: avanza varias veces. Giro. Segundo bucle: avanza más veces. ¡Listo!' }
+            { speaker: 'Hermione', text: 'Primer bucle: avanza 3 veces. Giro. Segundo bucle: avanza 5 veces. ¡Listo!' }
         ]
     },
     {
@@ -285,17 +285,17 @@ const LEVELS = [
     {
         id: 16, year: 4,
         title: 'NOMBRA TU HECHIZO',
-        desc: 'Define una función con def y reutilízala. El patrón se repite.',
+        desc: 'Define una función con "avanzar, avanzar" y reutilízala.',
         concept: 'INTRO A FUNCIONES', size: 5,
-        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 4, y: 0 },
-        walls: [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }],
+        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 4, y: 3 },
+        walls: [],
         dementors: [], doors: [], dragons: [], rocks: [], hiddenPaths: [],
-        availableCards: ['move', 'turnRight', 'turnLeft', 'expelliarmus', 'funcion', 'call', 'loop'],
-        memoryLimit: 6, points: 200,
+        availableCards: ['move', 'turnRight', 'turnLeft', 'funcion', 'call'],
+        memoryLimit: 7, points: 200,
         dialogues: [
             { speaker: 'Dumbledore', text: '{player}, un mago sabio no repite el mismo hechizo una y otra vez. Lo NOMBRA y lo reutiliza.' },
-            { speaker: 'Dumbledore', text: 'Usa "def" para definir una función: Dale un nombre a un grupo de instrucciones.' },
-            { speaker: 'Dumbledore', text: 'Luego, solo escribe el nombre de la función y se ejecutará todo su contenido. ¡Magia pura!' }
+            { speaker: 'Dumbledore', text: 'Usa "def" para definir una función. Por ejemplo "def mover(): avanzar, avanzar" avanza 2 pasos.' },
+            { speaker: 'Dumbledore', text: 'Luego llama mover() varias veces. Sin repetir "avanzar" 7 veces. ¡La función hace el trabajo!' }
         ]
     },
     {
@@ -306,7 +306,7 @@ const LEVELS = [
         harry: { x: 0, y: 2, dir: 0 }, snitch: { x: 4, y: 2 },
         walls: [], dementors: [], doors: [], dragons: [{ x: 1, y: 2 }], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnRight', 'turnLeft', 'wingardium', 'funcion', 'call', 'loop'],
-        memoryLimit: 5, points: 200,
+        memoryLimit: 6, points: 200,
         dialogues: [
             { speaker: 'Ron', text: '{player}, hay un dragón en el puente. Define una función que: wingardium al dragón y luego avance.' },
             { speaker: 'Ron', text: 'Después de definir la función, solo escríbela donde la necesites. Una vez definida, se usa como cualquier instrucción.' },
@@ -322,7 +322,7 @@ const LEVELS = [
         walls: [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 4, y: 1 }, { x: 4, y: 2 }, { x: 4, y: 3 }],
         dementors: [], doors: [], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnRight', 'turnLeft', 'expelliarmus', 'funcion', 'call', 'loop'],
-        memoryLimit: 7, points: 225,
+        memoryLimit: 10, points: 225,
         dialogues: [
             { speaker: 'Hermione', text: 'Dos patrones diferentes, {player}. Define una función para cada uno.' },
             { speaker: 'Hermione', text: 'Las funciones son como herramientas en una caja: cada una hace una cosa específica.' },
@@ -338,7 +338,7 @@ const LEVELS = [
         walls: [{ x: 2, y: 0 }, { x: 2, y: 2 }],
         dementors: [{ x: 1, y: 1 }], doors: [{ x: 3, y: 1 }], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'condicional', 'funcion', 'call', 'loop'],
-        memoryLimit: 6, points: 225,
+        memoryLimit: 8, points: 225,
         dialogues: [
             { speaker: 'Fred', text: '{player}, lo mejor está por venir: ¡puedes poner un "if" DENTRO de una función!' },
             { speaker: 'Fred', text: 'La función decide según lo que encuentre. Es como un hechizo inteligente.' },
@@ -354,7 +354,7 @@ const LEVELS = [
         walls: [], dementors: [{ x: 2, y: 2 }, { x: 4, y: 2 }],
         doors: [{ x: 1, y: 2 }], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'protego', 'lumos', 'wingardium', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 6, points: 250,
+        memoryLimit: 10, points: 250,
         dialogues: [
             { speaker: 'Dumbledore', text: '{player}, has llegado lejos. Secuencias, bucles, condicionales y funciones.' },
             { speaker: 'Dumbledore', text: 'Este nivel pondrá a prueba tu capacidad de combinar todo lo aprendido.' },
@@ -372,7 +372,7 @@ const LEVELS = [
         walls: [{ x: 1, y: 5 }, { x: 1, y: 4 }, { x: 3, y: 4 }, { x: 3, y: 3 }, { x: 3, y: 2 }, { x: 5, y: 2 }],
         dementors: [{ x: 2, y: 3 }], doors: [{ x: 4, y: 4 }], dragons: [{ x: 2, y: 1 }], rocks: [{ x: 4, y: 2 }], hiddenPaths: [],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'protego', 'lumos', 'wingardium', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 12, points: 300,
+        memoryLimit: 15, points: 300,
         dialogues: [
             { speaker: 'Snape', text: 'Un laberinto, {player}. Espero que tu programa sea mejor que tus anteriores trabajos.' },
             { speaker: 'Snape', text: 'Planifica antes de ejecutar. Un buen programador piensa antes de escribir.' },
@@ -390,7 +390,7 @@ const LEVELS = [
         doors: [{ x: 5, y: 3 }], dragons: [{ x: 1, y: 5 }], rocks: [{ x: 5, y: 1 }],
         hiddenPaths: [{ x: 3, y: 0 }, { x: 3, y: 2 }],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'protego', 'lumos', 'wingardium', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 14, points: 300,
+        memoryLimit: 18, points: 300,
         dialogues: [
             { speaker: 'Harry', text: '{player}, el mapa del Merodeador me ayudaría ahora. Busca patrones en el caos.' },
             { speaker: 'Harry', text: 'Hay caminos ocultos. Recuerda usar Lumos para revelarlos.' },
@@ -408,7 +408,7 @@ const LEVELS = [
         doors: [{ x: 3, y: 3 }], dragons: [{ x: 5, y: 1 }], rocks: [{ x: 5, y: 5 }],
         hiddenPaths: [{ x: 0, y: 2 }, { x: 0, y: 4 }],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'protego', 'lumos', 'wingardium', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 12, points: 350,
+        memoryLimit: 16, points: 350,
         dialogues: [
             { speaker: 'Dumbledore', text: '{player}, el verdadero mago no solo lanza hechizos. Piensa, planifica y actúa.' },
             { speaker: 'Dumbledore', text: 'Este nivel tiene de todo. Es el momento de demostrar que eres un programador.' },
@@ -425,7 +425,7 @@ const LEVELS = [
         dementors: [{ x: 1, y: 1 }, { x: 3, y: 1 }],
         doors: [], dragons: [], rocks: [], hiddenPaths: [{ x: 1, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 2 }, { x: 3, y: 2 }],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'lumos', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 8, points: 350,
+        memoryLimit: 12, points: 350,
         dialogues: [
             { speaker: 'McGonagall', text: '{player}, cada camino es diferente. Tu programa debe ADAPTARSE.' },
             { speaker: 'McGonagall', text: 'Usa condicionales para tomar decisiones según lo que encuentres.' },
@@ -445,7 +445,7 @@ const LEVELS = [
         rocks: [{ x: 3, y: 1 }],
         hiddenPaths: [{ x: 0, y: 0 }, { x: 6, y: 0 }],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'protego', 'lumos', 'wingardium', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 14, points: 500,
+        memoryLimit: 18, points: 500,
         dialogues: [
             { speaker: 'Dumbledore', text: '{player}, este es el momento. Has recorrido un largo camino.' },
             { speaker: 'Dumbledore', text: 'Secuencias, bucles, condicionales, funciones... todo te ha preparado para esto.' },
@@ -458,16 +458,16 @@ const LEVELS = [
         id: 26, year: 6,
         title: 'LA BIBLIOTECA DE HECHIZOS',
         desc: 'Define funciones pequeñas y una función principal que las llame.',
-        concept: 'COMPOSICIÓN', size: 5,
-        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 4, y: 0 },
-        walls: [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }],
+        concept: 'COMPOSICIÓN', size: 7,
+        harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 6, y: 3 },
+        walls: [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 4 }, { x: 3, y: 5 }, { x: 3, y: 6 }],
         dementors: [], doors: [], dragons: [], rocks: [], hiddenPaths: [],
-        availableCards: ['move', 'turnRight', 'turnLeft', 'expelliarmus', 'funcion', 'call', 'loop'],
-        memoryLimit: 6, points: 400,
+        availableCards: ['move', 'turnRight', 'turnLeft', 'funcion', 'call'],
+        memoryLimit: 12, points: 400,
         dialogues: [
             { speaker: 'Hermione', text: '{player}, lo más poderoso de las funciones es que una puede llamar a OTRA.' },
-            { speaker: 'Hermione', text: 'Define funciones pequeñas: una para avanzar y atacar, otra para girar y avanzar.' },
-            { speaker: 'Hermione', text: 'Luego crea una función "resolver()" que llame a las otras. Como piezas de un rompecabezas.' }
+            { speaker: 'Hermione', text: 'Define "avanzar3()" = avanzar, avanzar, avanzar. Luego crea "resolver()" que la use con giros.' },
+            { speaker: 'Hermione', text: 'resolver() llama a avanzar3, gira, avanzar3, gira, avanzar3. ¡Composición de funciones!' }
         ]
     },
     {
@@ -478,7 +478,7 @@ const LEVELS = [
         harry: { x: 0, y: 0, dir: 0 }, snitch: { x: 5, y: 0 },
         walls: [], dementors: [{ x: 2, y: 0 }, { x: 4, y: 0 }], doors: [], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'expelliarmus', 'funcion', 'call', 'loop'],
-        memoryLimit: 4, points: 400,
+        memoryLimit: 9, points: 400,
         dialogues: [
             { speaker: 'Ron', text: '{player}, funciona, pero... ¿podría ser más CORTO? Mira qué instrucciones se repiten.' },
             { speaker: 'Ron', text: 'Eso se llama "refactorizar": mejorar el código sin cambiar lo que hace.' },
@@ -494,7 +494,7 @@ const LEVELS = [
         walls: [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 3 }, { x: 3, y: 4 }],
         dementors: [{ x: 1, y: 2 }], doors: [{ x: 4, y: 2 }], dragons: [], rocks: [], hiddenPaths: [],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'condicional', 'funcion', 'call', 'loop'],
-        memoryLimit: 6, points: 450,
+        memoryLimit: 12, points: 450,
         dialogues: [
             { speaker: 'Dumbledore', text: '{player}, divide el problema en partes pequeñas. Una función para cada parte.' },
             { speaker: 'Dumbledore', text: 'Luego combínalas. Así se resuelven los problemas más difíciles.' },
@@ -504,18 +504,19 @@ const LEVELS = [
     {
         id: 29, year: 6,
         title: 'EL LABERINTO CAMBIANTE',
-        desc: 'Los dementores cambian de posición. Tus funciones deben adaptarse con condicionales.',
-        concept: 'FUNCIONES ADAPTATIVAS', size: 6,
-        harry: { x: 0, y: 1, dir: 0 }, snitch: { x: 5, y: 1 },
-        walls: [{ x: 2, y: 0 }, { x: 2, y: 2 }, { x: 4, y: 0 }, { x: 4, y: 2 }],
-        dementors: [{ x: 1, y: 1 }, { x: 3, y: 1 }],
-        doors: [], dragons: [], rocks: [], hiddenPaths: [{ x: 1, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 2 }, { x: 3, y: 2 }],
-        availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'lumos', 'condicional', 'funcion', 'call', 'loop'],
-        memoryLimit: 8, points: 450,
+        desc: 'Un pasillo con dementores y puertas. Usa funciones con condicionales.',
+        concept: 'FUNCIONES ADAPTATIVAS', size: 7,
+        harry: { x: 0, y: 3, dir: 0 }, snitch: { x: 6, y: 3 },
+        walls: [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 2, y: 5 }, { x: 4, y: 1 }, { x: 4, y: 2 }, { x: 4, y: 4 }, { x: 4, y: 5 }],
+        dementors: [{ x: 1, y: 3 }, { x: 3, y: 3 }, { x: 5, y: 3 }],
+        doors: [{ x: 3, y: 3 }],
+        dragons: [], rocks: [], hiddenPaths: [],
+        availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'condicional', 'funcion', 'call', 'loop'],
+        memoryLimit: 14, points: 450,
         dialogues: [
-            { speaker: 'Fred', text: '{player}, este laberinto es impredecible. Los dementores aparecen donde sea.' },
-            { speaker: 'Fred', text: 'Necesitarás funciones con condicionales dentro para adaptarte.' },
-            { speaker: 'George', text: 'Como nuestros productos: lo mejor es no saber qué va a pasar. ¡Pero tu programa lo sabrá!' }
+            { speaker: 'Fred', text: '{player}, los dementores y puertas cambian. Cada vez es diferente.' },
+            { speaker: 'Fred', text: 'Crea una función "paso()" que avance y decida: si hay dementor ataca, si hay puerta abre.' },
+            { speaker: 'George', text: 'Una función inteligente que se adapta. ¡Como nuestros productos, pero que funciona!' }
         ]
     },
     {
@@ -535,7 +536,7 @@ const LEVELS = [
         rocks: [{ x: 5, y: 1 }],
         hiddenPaths: [{ x: 0, y: 3 }, { x: 7, y: 3 }],
         availableCards: ['move', 'turnLeft', 'turnRight', 'expelliarmus', 'alohomora', 'protego', 'lumos', 'wingardium', 'condicional', 'loop', 'funcion', 'call'],
-        memoryLimit: 14, points: 1000,
+        memoryLimit: 20, points: 1000,
         dialogues: [
             { speaker: 'Dumbledore', text: '{player}, este es el final. Todos los profesores observan.' },
             { speaker: 'McGonagall', text: 'Has recorrido un largo camino desde el primer "avanzar()". Hasta aquí has llegado.' },
@@ -579,7 +580,7 @@ let gameState = {
     stars: {},
     housePoints: 0,
     house: null,
-    character: localStorage.getItem('harryCharacter') || 'harry',
+    character: 'harry',
     musicOn: false,
     loopOpen: false,
     condOpen: false,
@@ -590,9 +591,222 @@ let gameState = {
     dialogueIndex: 0,
     gameMode: 'normal',
     attempts: 0,
-    customSpells: JSON.parse(localStorage.getItem('harrySpells') || '[]'),
+    customSpells: [],
     recordingSpell: null
 };
+
+// ════════════════════════════════════════════════════════════════
+//  PROFILE SYSTEM (multi-jugador)
+// ════════════════════════════════════════════════════════════════
+
+const PROFILES_KEY = 'hp_profiles';
+const ACTIVE_PROFILE_KEY = 'hp_activeProfile';
+
+function getProfiles() {
+    try { return JSON.parse(localStorage.getItem(PROFILES_KEY)) || []; } catch { return []; }
+}
+
+function saveProfiles(profiles) {
+    localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+}
+
+function getActiveProfileId() {
+    return localStorage.getItem(ACTIVE_PROFILE_KEY);
+}
+
+function setActiveProfileId(id) {
+    localStorage.setItem(ACTIVE_PROFILE_KEY, id);
+}
+
+function getCurrentProfile() {
+    const id = getActiveProfileId();
+    const profiles = getProfiles();
+    return profiles.find(p => p.id === id) || null;
+}
+
+function createProfile(name) {
+    const profiles = getProfiles();
+    const id = 'p_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4);
+    const profile = {
+        id, name: name.trim(),
+        character: 'harry', house: null,
+        progress: { totalPoints: 0, completedLevels: [], stars: {}, housePoints: 0 },
+        customSpells: [],
+        createdAt: new Date().toISOString(),
+        lastPlayedAt: new Date().toISOString()
+    };
+    profiles.push(profile);
+    saveProfiles(profiles);
+    setActiveProfileId(id);
+    return profile;
+}
+
+function deleteProfile(id) {
+    let profiles = getProfiles();
+    const wasActive = getActiveProfileId() === id;
+    profiles = profiles.filter(p => p.id !== id);
+    saveProfiles(profiles);
+    if (wasActive) {
+        localStorage.removeItem(ACTIVE_PROFILE_KEY);
+        gameState.house = null;
+        gameState.character = 'harry';
+        renderProfiles();
+    }
+}
+
+function migrateLegacyData() {
+    const profiles = getProfiles();
+    if (profiles.length > 0) return false;
+    const oldProgress = localStorage.getItem('harryPotterGame');
+    const oldChar = localStorage.getItem('harryCharacter');
+    const oldHouse = localStorage.getItem('harryHouse');
+    const oldSpells = localStorage.getItem('harrySpells');
+    if (!oldProgress && !oldChar) return false;
+    const profile = {
+        id: 'p_legacy', name: 'Jugador',
+        character: oldChar || 'harry', house: oldHouse || null,
+        progress: oldProgress ? JSON.parse(oldProgress) : { totalPoints: 0, completedLevels: [], stars: {}, housePoints: 0 },
+        customSpells: oldSpells ? JSON.parse(oldSpells) : [],
+        createdAt: new Date().toISOString(),
+        lastPlayedAt: new Date().toISOString()
+    };
+    profiles.push(profile);
+    saveProfiles(profiles);
+    setActiveProfileId(profile.id);
+    return true;
+}
+
+function switchProfile(id) {
+    setActiveProfileId(id);
+    const profile = getCurrentProfile();
+    if (profile) {
+        profile.lastPlayedAt = new Date().toISOString();
+        saveProfiles(getProfiles());
+    }
+    loadProfileData();
+    document.querySelectorAll('.house-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.char-btn').forEach(b => b.classList.remove('selected'));
+    if (gameState.house) {
+        const hb = document.querySelector(`.house-btn[data-house="${gameState.house}"]`);
+        if (hb) hb.classList.add('selected');
+        document.getElementById('houseScoreItem').style.display = 'inline-block';
+        updateHouseDisplay();
+    } else {
+        document.getElementById('houseScoreItem').style.display = 'none';
+    }
+    if (gameState.character && CHARACTERS[gameState.character]) {
+        const cb = document.querySelector(`.char-btn[data-char="${gameState.character}"]`);
+        if (cb) cb.classList.add('selected');
+        document.getElementById('charScoreItem').style.display = 'inline-block';
+        updateCharDisplay();
+    } else {
+        document.getElementById('charScoreItem').style.display = 'none';
+    }
+    renderLevels();
+    updateScoreDisplay();
+    renderProfiles();
+    document.getElementById('profileSelector').style.display = 'none';
+}
+
+function loadProfileData() {
+    const profile = getCurrentProfile();
+    if (!profile) return;
+    const p = profile.progress;
+    gameState.totalPoints = p.totalPoints || 0;
+    gameState.completedLevels = new Set(p.completedLevels || []);
+    gameState.stars = p.stars || {};
+    gameState.housePoints = p.housePoints || 0;
+    gameState.house = profile.house || null;
+    gameState.character = profile.character || 'harry';
+    gameState.customSpells = profile.customSpells || [];
+    updateProfileLastPlayed();
+}
+
+function updateProfileLastPlayed() {
+    const profile = getCurrentProfile();
+    if (!profile) return;
+    profile.lastPlayedAt = new Date().toISOString();
+    const profiles = getProfiles();
+    const idx = profiles.findIndex(p => p.id === profile.id);
+    if (idx >= 0) { profiles[idx] = profile; saveProfiles(profiles); }
+}
+
+function renderProfiles() {
+    const container = document.getElementById('profileList');
+    if (!container) return;
+    const profiles = getProfiles();
+    const activeId = getActiveProfileId();
+    container.innerHTML = '';
+    profiles.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'profile-card' + (p.id === activeId ? ' active' : '');
+        const char = CHARACTERS[p.character] || CHARACTERS.harry;
+        const stars = Object.values(p.progress.stars || {}).reduce((a, b) => a + b, 0);
+        const levels = (p.progress.completedLevels || []).length;
+        card.innerHTML = `
+            <div class="profile-avatar">${char.emoji}</div>
+            <div class="profile-info">
+                <div class="profile-name">${p.name}</div>
+                <div class="profile-stats">⭐ ${stars} · 📜 ${levels}/30 niveles</div>
+                <div class="profile-date">${new Date(p.lastPlayedAt).toLocaleDateString('es')}</div>
+            </div>
+            ${p.id !== activeId ? `<button class="profile-select-btn" data-id="${p.id}">▶</button>` : '<div class="profile-check">✓</div>'}
+        `;
+        const btn = card.querySelector('.profile-select-btn');
+        if (btn) btn.onclick = () => switchProfile(p.id);
+        if (p.id === activeId) {
+            card.onclick = () => document.getElementById('profileSelector').style.display = 'none';
+        }
+        container.appendChild(card);
+    });
+    
+    document.getElementById('btnDeleteProfile').style.display = profiles.length > 1 ? 'inline-block' : 'none';
+}
+
+function showProfileSelector() {
+    document.getElementById('profileSelector').style.display = 'flex';
+    renderProfiles();
+}
+
+function getTimeSince(dateStr) {
+    if (!dateStr) return '';
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const days = Math.floor(diff / 86400000);
+    if (days === 0) return 'hoy';
+    if (days === 1) return 'ayer';
+    return `hace ${days} días`;
+}
+
+function createNewProfile() {
+    const input = prompt('Nombre del jugador:', '');
+    if (!input || !input.trim()) return;
+    const name = input.trim();
+    createProfile(name);
+    loadProfileData();
+    document.getElementById('profileSelector').style.display = 'none';
+    document.querySelectorAll('.house-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.char-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('houseScoreItem').style.display = 'none';
+    document.getElementById('charScoreItem').style.display = 'none';
+    gameState.house = null;
+    gameState.character = 'harry';
+    renderLevels();
+    updateScoreDisplay();
+    renderProfiles();
+}
+
+function deleteCurrentProfile() {
+    const profile = getCurrentProfile();
+    if (!profile) return;
+    if (!confirm(`¿Eliminar a "${profile.name}"? Todo su progreso se perderá.`)) return;
+    deleteProfile(profile.id);
+    const remaining = getProfiles();
+    if (remaining.length > 0) {
+        switchProfile(remaining[remaining.length - 1].id);
+    } else {
+        renderProfiles();
+    }
+}
 
 // ════════════════════════════════════════════════════════════════
 //  INIT
@@ -600,26 +814,31 @@ let gameState = {
 
 function init() {
     createStars();
-    const savedHouse = localStorage.getItem('harryHouse');
-    if (savedHouse) {
-        gameState.house = savedHouse;
-        document.querySelectorAll('.house-btn').forEach(b => {
-            if (b.dataset.house === savedHouse) b.classList.add('selected');
-        });
-        document.getElementById('houseScoreItem').style.display = 'inline-block';
-        updateHouseDisplay();
+    migrateLegacyData();
+    const profile = getCurrentProfile();
+    if (profile) {
+        loadProfileData();
+        if (gameState.house) {
+            document.querySelectorAll('.house-btn').forEach(b => {
+                if (b.dataset.house === gameState.house) b.classList.add('selected');
+            });
+            document.getElementById('houseScoreItem').style.display = 'inline-block';
+            updateHouseDisplay();
+        }
+        if (gameState.character && CHARACTERS[gameState.character]) {
+            document.querySelectorAll('.char-btn').forEach(b => {
+                if (b.dataset.char === gameState.character) b.classList.add('selected');
+            });
+            document.getElementById('charScoreItem').style.display = 'inline-block';
+            updateCharDisplay();
+        }
+        renderLevels();
+        updateScoreDisplay();
+    } else {
+        showProfileSelector();
     }
-    const savedChar = localStorage.getItem('harryCharacter');
-    if (savedChar && CHARACTERS[savedChar]) {
-        gameState.character = savedChar;
-        document.querySelectorAll('.char-btn').forEach(b => {
-            if (b.dataset.char === savedChar) b.classList.add('selected');
-        });
-        document.getElementById('charScoreItem').style.display = 'inline-block';
-        updateCharDisplay();
-    }
-    renderLevels();
-    loadProgress();
+    renderProfiles();
+    window.addEventListener('resize', handleResize);
 }
 
 function createStars() {
@@ -640,21 +859,21 @@ function createStars() {
 
 function selectHouse(house) {
     gameState.house = house;
-    localStorage.setItem('harryHouse', house);
     document.querySelectorAll('.house-btn').forEach(b => b.classList.remove('selected'));
     document.querySelector(`.house-btn[data-house="${house}"]`).classList.add('selected');
     document.getElementById('houseScoreItem').style.display = 'inline-block';
     updateHouseDisplay();
+    saveProgress();
 }
 
 function selectCharacter(char) {
     if (!CHARACTERS[char]) return;
     gameState.character = char;
-    localStorage.setItem('harryCharacter', char);
     document.querySelectorAll('.char-btn').forEach(b => b.classList.remove('selected'));
     document.querySelector(`.char-btn[data-char="${char}"]`).classList.add('selected');
     document.getElementById('charScoreItem').style.display = 'inline-block';
     updateCharDisplay();
+    saveProgress();
 }
 
 function updateHouseDisplay() {
@@ -728,24 +947,25 @@ function renderLevels() {
 }
 
 function loadProgress() {
-    const saved = localStorage.getItem('harryPotterGame');
-    if (saved) {
-        const data = JSON.parse(saved);
-        gameState.totalPoints = data.totalPoints || 0;
-        gameState.completedLevels = new Set(data.completedLevels || []);
-        gameState.stars = data.stars || {};
-        gameState.housePoints = data.housePoints || 0;
-        updateScoreDisplay();
-    }
+    loadProfileData();
 }
 
 function saveProgress() {
-    localStorage.setItem('harryPotterGame', JSON.stringify({
+    const profile = getCurrentProfile();
+    if (!profile) return;
+    profile.progress = {
         totalPoints: gameState.totalPoints,
         completedLevels: Array.from(gameState.completedLevels),
         stars: gameState.stars,
         housePoints: gameState.housePoints
-    }));
+    };
+    profile.character = gameState.character;
+    profile.house = gameState.house;
+    profile.customSpells = gameState.customSpells;
+    profile.lastPlayedAt = new Date().toISOString();
+    const profiles = getProfiles();
+    const idx = profiles.findIndex(p => p.id === profile.id);
+    if (idx >= 0) { profiles[idx] = profile; saveProfiles(profiles); }
 }
 
 function getTotalStars() {
@@ -766,11 +986,20 @@ function updateScoreDisplay() {
 }
 
 function getUsedCardCount() {
-    return gameState.program.filter(c =>
+    let count = gameState.program.filter(c =>
         c.type !== 'loopStart' && c.type !== 'loopEnd' &&
         c.type !== 'condStart' && c.type !== 'condEnd' && c.type !== 'sinoStart' &&
         c.type !== 'funcStart' && c.type !== 'funcEnd'
     ).length;
+    Object.values(gameState.functions).forEach(funcCards => {
+        funcCards.forEach(c => {
+            if (c.type !== 'loopStart' && c.type !== 'loopEnd' &&
+                c.type !== 'condStart' && c.type !== 'condEnd' && c.type !== 'sinoStart') {
+                count++;
+            }
+        });
+    });
+    return count;
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -950,6 +1179,7 @@ function goToMenu() {
     document.getElementById('startScreen').style.display = 'block';
     renderLevels();
     updateScoreDisplay();
+    renderProfiles();
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -1040,7 +1270,7 @@ function startRecording() {
     if (!name || !name.trim()) return;
 
     gameState.customSpells.push({ name: name.trim(), program: JSON.parse(JSON.stringify(gameState.program)) });
-    localStorage.setItem('harrySpells', JSON.stringify(gameState.customSpells));
+    saveProgress();
     renderCards();
     showMessageSimple('✅', `¡Hechizo "${name.trim()}" grabado!`);
 }
@@ -1049,13 +1279,30 @@ function startRecording() {
 //  RENDER BOARD
 // ════════════════════════════════════════════════════════════════
 
+function getResponsiveCellSize() {
+    const level = gameState.currentLevel;
+    if (!level) return 72;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isGameVisible = document.getElementById('gameScreen').style.display !== 'none';
+    if (!isGameVisible) return 72;
+    const panelW = vw > 1100 ? 320 : vw > 700 ? 220 : 0;
+    const headerH = 140;
+    const availW = vw - panelW - 60;
+    const availH = vh - headerH - 100;
+    const cellByW = Math.floor(availW / level.size);
+    const cellByH = Math.floor(availH / level.size);
+    return Math.max(28, Math.min(72, cellByW, cellByH));
+}
+
 function renderBoard() {
     const board = document.getElementById('board');
     const level = gameState.currentLevel;
     const size = level.size;
     const charData = CHARACTERS[gameState.character] || CHARACTERS.harry;
+    const cellSize = getResponsiveCellSize();
 
-    board.style.gridTemplateColumns = `repeat(${size}, 72px)`;
+    board.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`;
     board.innerHTML = '';
 
     for (let y = 0; y < size; y++) {
@@ -1064,6 +1311,8 @@ function renderBoard() {
             cell.className = 'cell';
             cell.dataset.x = x;
             cell.dataset.y = y;
+            cell.style.width = cellSize + 'px';
+            cell.style.height = cellSize + 'px';
 
             if (level.walls.some(w => w.x === x && w.y === y)) {
                 cell.classList.add('wall');
@@ -1195,7 +1444,7 @@ function renderProgram() {
                 const rmBtn = document.createElement('button');
                 rmBtn.className = 'remove-btn';
                 rmBtn.textContent = '✕';
-                rmBtn.style.cssText = 'margin-left:auto;position:static;top:auto;right:auto;background:transparent;color:#e74c3c;border:none;font-size:0.6em;cursor:pointer;';
+                rmBtn.style.cssText = 'margin-left:auto;position:static;top:auto;right:auto;background:transparent;color:#e74c3c;border:none;cursor:pointer;';
                 rmBtn.onclick = () => removeCard(index);
                 footer.appendChild(rmBtn);
 
@@ -1212,7 +1461,7 @@ function renderProgram() {
         }
 
         if (card.type === 'loopStart') {
-            const block = createCodeBlock('loop', card, index, lineNumber);
+            const block = createCodeBlock('loop', card, index, lineNumber, gameState.loopOpen);
             currentLoopBody = block.body;
             loopDepth = 1;
             const target = document.querySelector('.func-block:last-child .block-body');
@@ -1234,7 +1483,7 @@ function renderProgram() {
         }
 
         if (card.type === 'condStart') {
-            const block = createCondCodeBlock(card, index, lineNumber);
+            const block = createCondCodeBlock(card, index, lineNumber, gameState.condOpen);
             currentCondBody = block.body;
             currentCondBlock = block.el;
             currentSinoBody = null;
@@ -1359,7 +1608,7 @@ function el(tag, cls, text) {
     return e;
 }
 
-function createCodeBlock(type, card, index, lineNum) {
+function createCodeBlock(type, card, index, lineNum, isOpen) {
     const block = document.createElement('div');
     block.className = type === 'loop' ? 'loop-block' : 'cond-block';
 
@@ -1378,24 +1627,26 @@ function createCodeBlock(type, card, index, lineNum) {
 
     const footer = document.createElement('div');
     footer.className = 'block-footer';
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'block-close-btn';
-    closeBtn.textContent = type === 'loop' ? 'CERRAR BUCLE' : 'CERRAR SI';
-    closeBtn.onclick = () => type === 'loop' ? closeLoop() : closeCond();
-    footer.appendChild(closeBtn);
+    if (isOpen) {
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'block-close-btn';
+        closeBtn.textContent = type === 'loop' ? 'CERRAR BUCLE' : 'CERRAR SI';
+        closeBtn.onclick = () => type === 'loop' ? closeLoop() : closeCond();
+        footer.appendChild(closeBtn);
 
-    if (type === 'cond') {
-        const sinoBtn = document.createElement('button');
-        sinoBtn.className = 'block-sino-btn';
-        sinoBtn.textContent = '+ else:';
-        sinoBtn.onclick = addSino;
-        footer.appendChild(sinoBtn);
+        if (type === 'cond') {
+            const sinoBtn = document.createElement('button');
+            sinoBtn.className = 'block-sino-btn';
+            sinoBtn.textContent = '+ else:';
+            sinoBtn.onclick = addSino;
+            footer.appendChild(sinoBtn);
+        }
     }
 
     const rmBtn = document.createElement('button');
     rmBtn.className = 'remove-btn';
     rmBtn.textContent = '✕';
-    rmBtn.style.cssText = 'margin-left:auto;position:static;top:auto;right:auto;background:transparent;color:#e74c3c;border:none;font-size:0.6em;cursor:pointer;';
+    rmBtn.style.cssText = 'margin-left:auto;position:static;top:auto;right:auto;background:transparent;color:#e74c3c;border:none;cursor:pointer;';
     rmBtn.onclick = () => removeCard(index);
     footer.appendChild(rmBtn);
 
@@ -1403,7 +1654,7 @@ function createCodeBlock(type, card, index, lineNum) {
     return { el: block, body };
 }
 
-function createCondCodeBlock(card, index, lineNum) {
+function createCondCodeBlock(card, index, lineNum, isOpen) {
     const block = document.createElement('div');
     block.className = 'cond-block';
 
@@ -1436,22 +1687,25 @@ function createCondCodeBlock(card, index, lineNum) {
 
     const footer = document.createElement('div');
     footer.className = 'block-footer';
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'block-close-btn';
-    closeBtn.textContent = 'CERRAR SI';
-    closeBtn.onclick = closeCond;
-    footer.appendChild(closeBtn);
 
-    const sinoBtn = document.createElement('button');
-    sinoBtn.className = 'block-sino-btn';
-    sinoBtn.textContent = '+ else:';
-    sinoBtn.onclick = addSino;
-    footer.appendChild(sinoBtn);
+    if (isOpen) {
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'block-close-btn';
+        closeBtn.textContent = 'CERRAR SI';
+        closeBtn.onclick = closeCond;
+        footer.appendChild(closeBtn);
+
+        const sinoBtn = document.createElement('button');
+        sinoBtn.className = 'block-sino-btn';
+        sinoBtn.textContent = '+ else:';
+        sinoBtn.onclick = addSino;
+        footer.appendChild(sinoBtn);
+    }
 
     const rmBtn = document.createElement('button');
     rmBtn.className = 'remove-btn';
     rmBtn.textContent = '✕';
-    rmBtn.style.cssText = 'margin-left:auto;position:static;top:auto;right:auto;background:transparent;color:#e74c3c;border:none;font-size:0.6em;cursor:pointer;';
+    rmBtn.style.cssText = 'margin-left:auto;position:static;top:auto;right:auto;background:transparent;color:#e74c3c;border:none;cursor:pointer;';
     rmBtn.onclick = () => removeCard(index);
     footer.appendChild(rmBtn);
 
@@ -1483,7 +1737,7 @@ function createFuncBlock(fName, funcCards, startLine) {
     const rmBtn = document.createElement('button');
     rmBtn.className = 'remove-btn';
     rmBtn.textContent = '✕';
-    rmBtn.style.cssText = 'margin-left:auto;background:transparent;color:#e74c3c;border:none;font-size:0.6em;cursor:pointer;padding:4px 8px;';
+    rmBtn.style.cssText = 'margin-left:auto;background:transparent;color:#e74c3c;border:none;cursor:pointer;padding:4px 8px;';
     rmBtn.title = `Eliminar función ${fName}`;
     rmBtn.onclick = () => {
         delete gameState.functions[fName];
@@ -1987,6 +2241,12 @@ function moveHarry() {
         showMessage('🧱', '¡PARED!', `${charName} chocó con una pared. Necesitas girar.`, false);
         gameState.aborted = true; return;
     }
+    const targetHidden = gameState.hiddenPaths.find(h => h.x === newX && h.y === newY);
+    if (targetHidden && !targetHidden.revealed) {
+        showMessage('💡', '¡CAMINO OCULTO!', `${getCharName()} no ve el camino. Usa lumos() para revelar caminos ocultos.`, false);
+        gameState.aborted = true; return;
+    }
+
     const door = gameState.doors.find(d => d.x === newX && d.y === newY && !d.open);
     if (door) {
         showMessage('🚪', '¡PUERTA CERRADA!', 'Necesitas usar alohomora() frente a la puerta antes de avanzar.', false);
@@ -2083,6 +2343,7 @@ async function castSpell(spellType) {
                 ents.forEach(e => e.classList.add('wingardium-moving'));
             }
             await sleep(500);
+            renderBoard();
         } else {
             showMessage('🪄', 'WINGARDIUM LEVIOSA', 'No hay nada que mover en esa dirección.', false);
             gameState.aborted = true;
@@ -2322,6 +2583,17 @@ function deleteAllSpells() {
     saveProgress();
     renderCards();
     renderProgram();
+}
+
+function showChangePlayer() {
+    showProfileSelector();
+}
+
+function handleResize() {
+    if (gameState.currentLevel && document.getElementById('gameScreen').style.display !== 'none') {
+        renderBoard();
+        renderProgram();
+    }
 }
 
 init();
